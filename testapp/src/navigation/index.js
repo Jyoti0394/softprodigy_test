@@ -11,8 +11,11 @@ const BottomTabNavigator = () => {
     return (
         <Tab.Navigator
             screenOptions={{
-                activeTintColor: '#000000',
-                inactiveBackgroundColor: '#3772e0'
+                tabBarStyle:{
+                    backgroundColor:'#3772e0',
+                },
+                tabBarActiveTintColor:'#ffffff',
+                tabBarInactiveTintColor: '#000000',
             }}>
             <Tab.Screen
                 name="Home"
@@ -28,7 +31,7 @@ const BottomTabNavigator = () => {
                             tintColor={
                                 focused
                                     ? '#ffffff'
-                                    : 'yellow'
+                                    : '#000000'
                             }
                         />
                     ),
@@ -48,7 +51,7 @@ const BottomTabNavigator = () => {
                             tintColor={
                                 focused
                                     ? '#ffffff'
-                                    : 'yellow'
+                                    : '#000000'
                             }
                         />
                     ),

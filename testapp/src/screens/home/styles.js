@@ -3,13 +3,19 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        padding:15,
+        justifyContent: 'center'
     },
-    image:{
-        width:'100%',
-        height:300
-    }
+    gridView : {
+        flex: 1,
+        flexDirection: 'column',
+        margin: 1
+    },
+    imageThumbnail: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 100,
+    },
 });
 
 export default styles;

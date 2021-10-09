@@ -1,11 +1,9 @@
 import { FETCH_IMAGES, FETCH_IMAGES_FAILURE, FETCH_IMAGES_SUCCESS } from "./constants";
 
-export const fetchImages = (count) => {
-    return{
+export const fetchImages = (count) => ({
     type: FETCH_IMAGES,
-    payload: count
-    }
-}
+    payload: count   
+})
 
 export const fetchImagesSuccess = (data) => ({
     type: FETCH_IMAGES_SUCCESS,

@@ -1,39 +1,44 @@
 import React, { useEffect } from 'react';
-import { View, Text, Image} from 'react-native';
+import { View, Image, FlatList, SafeAreaView, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchImages } from '../../redux/actions';
-import { store } from '../../redux/store';
 import styles from './styles';
-import Carousel from 'react-native-snap-carousel';
+import CarouselCards from '../../components/CarouselCards';
 
 const HomeScreen = () => {
-    const images = useSelector(state=>state.response);
+    const images = useSelector(state => state.response);
+    const isProgress = useSelector(state => state.isProgress);
+    console.log('images', images)
     const dispatch = useDispatch();
-    useEffect(()=>{     
-        dispatch(fetchImages('5'));
-    },[])
+    useEffect(() => {
+        dispatch(fetchImages('30'));
+    }, [])
 
-    const renderItem = ({ item, index }) => {
-        return (
-            <View style={styles.slide}>
-                <Image style={styles.image} source={{uri:item}}/>
-            </View>
-        );
-    }
+    const filteredData = images ? images.slice(0, 5) : []
 
     return (
-        <View style={styles.container}>
-            <Text>Home</Text>
-            {images?
-            <Carousel
-                layout={'default'}
+        <SafeAreaView style={styles.container}>
+            {images ?
+                <CarouselCards data={filteredData} />
+                : null}
+            {isProgress ?
+                <ActivityIndicator size="large" color="#3772e0" animating={isProgress} />
+                : null}
+            <FlatList
                 data={images}
-                renderItem={renderItem}
-                sliderWidth={300}
-                itemWidth={300}
+                renderItem={({ item }) => (
+                    <View
+                        style={styles.gridView}>
+                        <Image
+                            style={styles.imageThumbnail}
+                            source={{ uri: item }}
+                        />
+                    </View>
+                )}
+                numColumns={3}
+                keyExtractor={(item, index) => index.toString()}
             />
-            :null}
-        </View>
+        </SafeAreaView>
     )
 }
 export default HomeScreen;

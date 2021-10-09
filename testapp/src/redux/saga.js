@@ -13,7 +13,7 @@ export function* fetchImagesSaga(action) {
             .then(res => {
                 return res.data
             })
-            .catch(err => err)
+            .catch(err => {throw err})
         if (response) {
             yield put(fetchImagesSuccess(response))
         }

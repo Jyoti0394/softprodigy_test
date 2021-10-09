@@ -19,14 +19,16 @@ export default function Reducer(state = initialState, action) {
             return {
                 ...state,
                 isSuccess: true,
-                response: action.payload
+                response: action.payload,
+                isProgress: false
             }
         case FETCH_IMAGES_FAILURE:
             return {
                 ...state,
                 isFailed: true,
                 isSuccess:false,
-                response:''
+                response:[],
+                isProgress: false
             }
         default:
             return state;
